@@ -18,7 +18,7 @@ BLUE='\033[1;34m'
 NC='\033[0m' # No Color
 
 # script configuration
-BASE_URL='https://raw.githubusercontent.com/Azure/live-video-analytics/master/edge/setup' # location of remote files used by the script
+BASE_URL='https://raw.githubusercontent.com/emiliodangelo/live-video-analytics/master/edge/setup' # location of remote files used by the script
 DEFAULT_REGION='centralus'
 ENV_FILE='edge-deployment/.env'
 APP_SETTINGS_FILE='appsettings.json'
@@ -185,7 +185,7 @@ if [[ "$OWN_DEVICE" == "N" ]]; then
     # capture resource configuration in variables
     IOTHUB=$(echo "${RESOURCES}" | awk '$2 ~ /Microsoft.Devices\/IotHubs$/ {print $1}')
     AMS_ACCOUNT=$(echo "${RESOURCES}" | awk '$2 ~ /Microsoft.Media\/mediaservices$/ {print $1}')
-    VNET=$(echo "${RESOURCES}" | awk '$2 ~ /Microsoft.Network\/virtualNetworks$/ {print $1}')
+    VNET='/subscriptions/0944cf9e-9f5a-4cc8-a6bb-982a82145e32/resourceGroups/Archean-B25/providers/Microsoft.Network/virtualNetworks/B25-ER-VNET'
     EDGE_DEVICE="lva-sample-device"
     IOTHUB_CONNECTION_STRING=$(az iot hub connection-string show --hub-name ${IOTHUB} --query='connectionString')
     CONTAINER_REGISTRY=$(echo "${RESOURCES}" | awk '$2 ~ /Microsoft.ContainerRegistry\/registries$/ {print $1}')
@@ -260,7 +260,7 @@ if [[ "$OWN_DEVICE" == "N" ]]; then
         --admin-username $IOT_EDGE_VM_ADMIN \
         --admin-password $IOT_EDGE_VM_PWD \
         --vnet-name $VNET \
-        --subnet 'default' \
+        --subnet 'workloads' \
         --custom-data $CLOUD_INIT_FILE \
         --public-ip-address "" \
         --size "Standard_DS3_v2" \
