@@ -361,3 +361,4 @@ MigrationBackup/
 
 #github codespaces
 pythonenv3.8
+.venv
