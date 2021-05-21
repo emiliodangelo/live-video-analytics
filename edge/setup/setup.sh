@@ -259,7 +259,6 @@ if [[ "$OWN_DEVICE" == "N" ]]; then
         --image Canonical:UbuntuServer:18.04-LTS:latest \
         --admin-username $IOT_EDGE_VM_ADMIN \
         --admin-password $IOT_EDGE_VM_PWD \
-        #--vnet-name $VNET \
         --subnet '/subscriptions/0944cf9e-9f5a-4cc8-a6bb-982a82145e32/resourceGroups/Archean-B25/providers/Microsoft.Network/virtualNetworks/B25-ER-VNET/subnets/workloads' \
         --custom-data $CLOUD_INIT_FILE \
         --public-ip-address "" \
